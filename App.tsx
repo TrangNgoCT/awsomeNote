@@ -56,7 +56,7 @@ const Section: React.FC<{
 };
 
 const App = () => {
-  const isDarkMode = useColorScheme() === "dark";
+  const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -71,7 +71,7 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Hello world 3">
+          <Section title="i just fix to try commit it">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and
             then come back to see your edits.
           </Section>
