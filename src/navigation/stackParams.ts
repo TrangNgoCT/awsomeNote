@@ -1,14 +1,21 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 
-export type ListStackParams = {
-  List: undefined;
-  Detail: {
+export type GroupListStackParams = {
+  GroupList: undefined;
+  GroupDetail: {
     name: string;
   };
 };
 
-export type RootStackParams = ListStackParams & {
-  Home: undefined;
+export type HomeStackParams = GroupListStackParams & {
+  AddGroup: undefined;
   Profile: undefined;
-  ListStack: NavigatorScreenParams<ListStackParams> | undefined;
+  GroupListStack: NavigatorScreenParams<GroupListStackParams> | undefined;
+};
+
+export type RootStackParams = {
+  Login: undefined;
+  Register: undefined;
+  ForgotPassword: undefined;
+  Home: undefined;
 };

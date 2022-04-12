@@ -1,19 +1,31 @@
-import { View, Text, Button } from 'react-native';
-import React from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../navigation/stackParams';
+import React from 'react';
+import { Button, Text, View } from 'react-native';
+import { HomeStackParams } from '../../../navigation/stackParams';
 
-type Props = NativeStackScreenProps<RootStackParams, 'Home'>;
+type Props = NativeStackScreenProps<HomeStackParams, 'AddGroup'>;
 
 const Profile: React.FC<Props> = ({ navigation }) => {
+  useFocusEffect(
+    React.useCallback(() => {
+      // Do something when the screen is focused
+
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+      };
+    }, [])
+  );
+
   return (
-    <View>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Profile</Text>
       <Button
         title="go to detail name ..."
         onPress={() => {
-          navigation.navigate('ListStack', {
-            screen: 'Detail',
+          navigation.navigate('GroupListStack', {
+            screen: 'GroupDetail',
             params: { name: 'this is from profile' },
           });
         }}

@@ -2,16 +2,11 @@ import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Button, Text, View } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { HomeStackParams } from '../../../navigation/stackParams';
-import { actionCreators } from '../../../store';
-import { logout } from '../../../store/actionCreators';
 
-type Props = NativeStackScreenProps<HomeStackParams, 'GroupList'>;
+type Props = NativeStackScreenProps<HomeStackParams, 'AddGroup'>;
 
-const GroupList: React.FC<Props> = ({ navigation }) => {
-  const dispatch = useDispatch();
+const AddGroup: React.FC<Props> = ({ navigation }) => {
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
@@ -23,22 +18,20 @@ const GroupList: React.FC<Props> = ({ navigation }) => {
     }, [])
   );
 
-  const onClickLogout = () => {
-    dispatch(logout());
-  };
-
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>List </Text>
+      <Text>Home Screen</Text>
       <Button
-        title="go to detail group"
+        title="go to list"
         onPress={() => {
-          navigation.navigate('GroupDetail', { name: 'this a note' });
+          navigation.navigate('GroupListStack', {
+            screen: 'GroupDetail',
+            params: { name: 'this is from profile' },
+          });
         }}
       />
-      <Button title="logout" onPress={onClickLogout} />
     </View>
   );
 };
 
-export { GroupList };
+export { AddGroup };

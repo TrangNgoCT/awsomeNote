@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "162659043264",
+    "project_id": "note-app-training-8f8e4",
+    "storage_bucket": "note-app-training-8f8e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162659043264:android:04253579519cc90a066a25",
+        "android_client_info": {
+          "package_name": "com.awesometsproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162659043264-nkan8hs420e11cnqaeec1bv8tb3ll27c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAExBtWm4CIJFTXTgKFziJ4mOUXWQ2Ofw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162659043264-nkan8hs420e11cnqaeec1bv8tb3ll27c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
