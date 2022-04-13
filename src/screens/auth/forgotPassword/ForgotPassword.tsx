@@ -2,7 +2,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Button, Text, View } from 'react-native';
-import { RootStackParams } from '../../../navigation/stackParams';
+import { RootStackParams } from '../../../constants/stackParams';
 
 type Props = NativeStackScreenProps<RootStackParams, 'ForgotPassword'>;
 

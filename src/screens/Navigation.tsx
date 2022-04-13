@@ -1,34 +1,53 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useEffect } from 'react';
-import { RootStackParams } from '../navigation/stackParams';
-import { ForgotPassword, Login, Register } from './auth';
-import { Home } from './dashboard';
-
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ApplicationState, loggingByToken } from '../store';
-import { getAccessToken } from '../hooks/localStorage';
+import { useFirebaseAuth } from '../api/FirebaseAuth';
+import { RootStackParams } from '../constants/stackParams';
+import { ApplicationState, loginSuccess } from '../store';
+import { ForgotPassword, Login, Register } from './auth';
+import { Loading } from './commons';
+import { Home } from './dashboard';
 
 const RootStack = createNativeStackNavigator<RootStackParams>();
 
 const Navigation = () => {
   const dispatch = useDispatch();
+  const [appLoading, setAppLoading] = useState(true);
   const user = useSelector((state: ApplicationState) => state.auth.user);
+
   useEffect(() => {
-    const loadApp = async () => {
-      const token = await getAccessToken();
-      if (token) {
-        console.log(token);
-        dispatch(loggingByToken(token));
-      }
+    const loadApp1 = () =>
+      new Promise((res) => {
+        setTimeout(() => {
+          useFirebaseAuth.handleIsLoggedIn((user) => {
+            if (user != null) {
+              dispatch(
+                loginSuccess({
+                  email: user.email ?? '',
+                  id: user.uid,
+                })
+              );
+            }
+          });
+          res(true);
+        }, 1000);
+      });
+
+    const loadApp2 = async () => {
+      await loadApp1();
+      setAppLoading(false);
     };
-    loadApp();
+
+    loadApp2();
   }, []);
 
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        {user != undefined ? (
+        {appLoading ? (
+          <RootStack.Screen name="Loading" component={Loading} />
+        ) : user != undefined ? (
           <RootStack.Screen name="Home" component={Home} />
         ) : (
           <>

@@ -14,6 +14,7 @@ export type HomeStackParams = GroupListStackParams & {
 };
 
 export type RootStackParams = {
+  Loading: undefined;
   Login: undefined;
   Register: undefined;
   ForgotPassword: undefined;

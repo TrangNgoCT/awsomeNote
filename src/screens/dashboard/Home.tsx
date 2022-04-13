@@ -4,7 +4,7 @@ import { AddGroup, GroupListScreenStack, Profile } from '.';
 import ExploreIcon from '../../assests/icons/ExploreIcon';
 import PlusIcon from '../../assests/icons/PlusIcon';
 import ProfileIcon from '../../assests/icons/ProfileIcon';
-import { HomeStackParams } from '../../navigation/stackParams';
+import { HomeStackParams } from '../../constants/stackParams';
 
 const HomeStack = createBottomTabNavigator<HomeStackParams>();
 interface TabBarIconProps {

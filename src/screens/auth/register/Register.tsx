@@ -3,7 +3,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Button, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { RootStackParams } from '../../../navigation/stackParams';
+import { RootStackParams } from '../../../constants/stackParams';
 import { register } from '../../../store';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Register'>;

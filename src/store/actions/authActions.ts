@@ -1,14 +1,22 @@
 import { LoginPayload, RegisterPayload, User } from '../../models';
-import { AuthActionType } from '../actionTypes';
+
+enum AuthActionType {
+  ON_LOGIN_SUCCESS = 'ON_LOGIN_SUCCESS',
+  ON_REGISTER = 'ON_REGISTER',
+  ON_LOGGING = 'ON_LOGGING',
+  ON_ERROR = 'ON_ERROR',
+  ON_LOGOUT = 'ON_LOGOUT',
+  ON_LOGIN_GOOGLE = 'ON_LOGIN_GOOGLE',
+}
+export { AuthActionType };
 
 export interface LoggingAction {
   readonly type: AuthActionType.ON_LOGGING;
   payload: LoginPayload;
 }
 
-export interface LoggingByTokenAction {
-  readonly type: AuthActionType.ON_LOGGING_BY_TOKEN;
-  payload: string;
+export interface OnLoginGooleAction {
+  readonly type: AuthActionType.ON_LOGIN_GOOGLE;
 }
 
 export interface LoginSuccessAction {
@@ -32,7 +40,7 @@ export interface OnRegisterAction {
 
 export type AuthAction =
   | LoggingAction
-  | LoggingByTokenAction
+  | OnLoginGooleAction
   | LoginSuccessAction
   | LoginErrorAction
   | LogoutAction

@@ -4,7 +4,7 @@ import React from 'react';
 import { Button, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { HomeStackParams } from '../../../navigation/stackParams';
+import { HomeStackParams } from '../../../constants/stackParams';
 import { actionCreators } from '../../../store';
 import { logout } from '../../../store/actionCreators';
 

@@ -1,6 +1,5 @@
 import { User } from '../../models';
-import { AuthActionType } from '../actionTypes';
-import { AuthAction } from '../actions';
+import { AuthAction, AuthActionType } from '../actions';
 
 type AuthState = {
   user?: User;
@@ -18,7 +17,7 @@ const AuthReducer = (state: AuthState = initialState, action: AuthAction) => {
   switch (action.type) {
     case AuthActionType.ON_LOGGING:
       return { ...state, loading: true };
-    case AuthActionType.ON_LOGGING_BY_TOKEN:
+    case AuthActionType.ON_LOGIN_GOOGLE:
       return { ...state, loading: true };
     case AuthActionType.ON_LOGIN_SUCCESS:
       return {

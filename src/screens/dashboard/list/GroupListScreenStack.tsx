@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { Detail, GroupList } from '..';
-import { GroupListStackParams } from '../../../navigation/stackParams';
+import { GroupListStackParams } from '../../../constants/stackParams';
 
 const ListStack = createNativeStackNavigator<GroupListStackParams>();
 
