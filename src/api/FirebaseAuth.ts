@@ -9,13 +9,19 @@ const useFirebaseAuth = {
   register(payload: LoginPayload) {
     return auth().createUserWithEmailAndPassword(payload.email, payload.password);
   },
-  logout() {
-    if (auth().currentUser) {
-      return auth().signOut();
+  async logout() {
+    try {
+      const user = await GoogleSignin.getCurrentUser();
+      if (user) {
+        await GoogleSignin.revokeAccess();
+        await GoogleSignin.signOut();
+      }
+      await auth().signOut();
+    } catch (e) {
+      console.log('SIGN OUT BUG: ', e);
     }
   },
   async signInByGoogle() {
-    // TODO
     // Get the users ID token
     const { idToken } = await GoogleSignin.signIn();
 

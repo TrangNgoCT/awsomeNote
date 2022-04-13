@@ -11,7 +11,6 @@ interface LoginPayload {
 interface RegisterPayload {
   email: string;
   password: string;
-  username: string;
 }
 
 export type { User, LoginPayload, RegisterPayload };

@@ -1,26 +1,28 @@
 import yup from './yupExtend';
 
 const registerSchema = yup.object().shape({
-  name: yup.string().required('This field is required'),
-  email: yup.string().email('Email invalid').required('This field is required'),
+  email: yup.string().trim().email('Email invalid').required('This field is required'),
   password: yup
     .string()
+    .trim()
     .password('Password must contain at least one letter and one number')
     .required('This field is required')
-    .min(8, 'Min 8 characters')
-    .max(16, 'Max 16 characters'),
+    .min(6, 'Min 6 characters')
+    .max(10, 'Max 10 characters'),
   confirmPassword: yup
     .string()
+    .trim()
     .oneOf([yup.ref('password'), null], 'Confirm password not match'),
 });
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email('email invalid').required('this field is required'),
+  email: yup.string().trim().email('email invalid').required('this field is required'),
   password: yup
     .string()
+    .trim()
     .required('This field is required')
-    .min(8, 'Min 8 characters')
-    .max(16, 'Max 16 characters')
+    .min(6, 'Min 6 characters')
+    .max(10, 'Max 10 characters')
     .password('Password must contain at least one letter and one number'),
 });
 
@@ -58,14 +60,14 @@ const updatePasswordSchema = yup.object().shape({
   password: yup
     .string()
     .required('This field is required')
-    .min(8, 'Min 8 characters')
-    .max(16, 'Max 16 characters')
+    .min(6, 'Min 6 characters')
+    .max(10, 'Max 10 characters')
     .password('Password must contain at least one letter and one number'),
   newPassword: yup
     .string()
     .required('This field is required')
-    .min(8, 'Min 8 characters')
-    .max(16, 'Max 16 characters')
+    .min(6, 'Min 6 characters')
+    .max(10, 'Max 10 characters')
     .password('Password must contain at least one letter and one number'),
 });
 

@@ -24,6 +24,7 @@ const AuthReducer = (state: AuthState = initialState, action: AuthAction) => {
         ...state,
         user: action.payload,
         loading: false,
+        error: undefined,
       };
     case AuthActionType.ON_ERROR:
       return {

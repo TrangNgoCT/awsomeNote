@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { AnyObject, Maybe } from 'yup/lib/types';
 
-const REGEX_PASSWORD = /^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z_.\-@]{8,}$/;
+const REGEX_PASSWORD = /^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z_.\-@]{6,}$/;
 const REGEX_ONLY_NUMBER = /^\d+$/;
 
 yup.addMethod<yup.StringSchema>(yup.string, 'password', function (message) {

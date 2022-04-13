@@ -89,7 +89,6 @@ function* watchLoginFlow() {
     }
 
     yield take([AuthActionType.ON_LOGOUT, AuthActionType.ON_ERROR]);
-
     yield call(handleLogout);
   }
 }

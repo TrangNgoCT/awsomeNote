@@ -1,11 +1,9 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, GestureResponderEvent, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { HomeStackParams } from '../../../constants/stackParams';
-import { actionCreators } from '../../../store';
 import { logout } from '../../../store/actionCreators';
 
 type Props = NativeStackScreenProps<HomeStackParams, 'GroupList'>;
@@ -23,7 +21,8 @@ const GroupList: React.FC<Props> = ({ navigation }) => {
     }, [])
   );
 
-  const onClickLogout = () => {
+  const onClickLogout = (e: GestureResponderEvent) => {
+    e.preventDefault();
     dispatch(logout());
   };
 

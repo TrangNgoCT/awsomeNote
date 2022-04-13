@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
+import { LoadingModal } from '../../components';
 
 function Loading() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Loading screen</Text>
+    <View
+      style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 22 }}>
+      <LoadingModal size="large" text="Load App ...." />
+      <Text>???</Text>
     </View>
   );
 }

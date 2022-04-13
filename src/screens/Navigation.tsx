@@ -31,7 +31,7 @@ const Navigation = () => {
             }
           });
           res(true);
-        }, 1000);
+        }, 1500);
       });
 
     const loadApp2 = async () => {
