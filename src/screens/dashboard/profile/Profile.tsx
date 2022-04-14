@@ -1,12 +1,15 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { GestureResponderEvent, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { HomeStackParams } from '../../../constants/stackParams';
+import { ApplicationState, logout } from '../../../store';
+import { globalStyles } from '../../../styles/global';
 
 type Props = NativeStackScreenProps<HomeStackParams, 'AddGroup'>;
 
-const Profile: React.FC<Props> = ({ navigation }) => {
+const Profile: React.FC<Props> = () => {
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
@@ -18,20 +21,30 @@ const Profile: React.FC<Props> = ({ navigation }) => {
     }, [])
   );
 
+  const dispatch = useDispatch();
+  const email = useSelector((state: ApplicationState) => state.auth.user?.email);
+
+  const handleClickLogout = (e: GestureResponderEvent) => {
+    e.preventDefault();
+    dispatch(logout());
+  };
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Profile</Text>
-      <Button
-        title="go to detail name ..."
-        onPress={() => {
-          navigation.navigate('GroupListStack', {
-            screen: 'GroupDetail',
-            params: { name: 'this is from profile' },
-          });
-        }}
-      />
-    </View>
+    <SafeAreaView style={[globalStyles.container, globalStyles.center]}>
+      <Text style={[globalStyles.titleText, styles.title]}>{email}</Text>
+      <Text
+        style={[globalStyles.btn, globalStyles.btnPrimary]}
+        onPress={handleClickLogout}>
+        Log out
+      </Text>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    marginBottom: 30,
+  },
+});
 
 export { Profile };

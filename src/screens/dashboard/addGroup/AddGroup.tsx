@@ -1,8 +1,10 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { EditAddGroup } from '../../../components';
 import { HomeStackParams } from '../../../constants/stackParams';
+import { globalStyles } from '../../../styles/global';
 
 type Props = NativeStackScreenProps<HomeStackParams, 'AddGroup'>;
 
@@ -19,19 +21,20 @@ const AddGroup: React.FC<Props> = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="go to list"
-        onPress={() => {
+    <SafeAreaView style={[globalStyles.container, styles.center]}>
+      <EditAddGroup
+        callback={() => {
           navigation.navigate('GroupListStack', {
-            screen: 'GroupDetail',
-            params: { name: 'this is from profile' },
+            screen: 'GroupList',
           });
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  center: { flex: 1, justifyContent: 'center' },
+});
 
 export { AddGroup };

@@ -15,7 +15,7 @@ interface TabBarIconProps {
 
 const Home = () => {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
       <HomeStack.Screen
         name="GroupListStack"
         component={GroupListScreenStack}
@@ -24,6 +24,7 @@ const Home = () => {
             <ExploreIcon color={color} size={size} />
           ),
           tabBarLabel: 'Groups',
+          headerShown: false,
         }}
       />
       <HomeStack.Screen
@@ -34,6 +35,7 @@ const Home = () => {
             <PlusIcon color={color} size={size} />
           ),
           tabBarLabel: 'Add Group',
+          title: 'Add Group',
         }}
       />
       <HomeStack.Screen

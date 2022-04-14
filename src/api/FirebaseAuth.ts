@@ -2,7 +2,10 @@ import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { LoginPayload } from '../models';
 
-const useFirebaseAuth = {
+const firebaseAuth = {
+  getUid() {
+    return auth().currentUser?.uid;
+  },
   login(payload: LoginPayload) {
     return auth().signInWithEmailAndPassword(payload.email, payload.password);
   },
@@ -42,4 +45,4 @@ const useFirebaseAuth = {
     auth().onAuthStateChanged(callback);
   },
 };
-export { useFirebaseAuth };
+export { firebaseAuth };

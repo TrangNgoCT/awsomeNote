@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { LoadingModal } from '../../components';
 
 function Loading() {
@@ -7,7 +7,6 @@ function Loading() {
     <View
       style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 22 }}>
       <LoadingModal size="large" text="Load App ...." />
-      <Text>???</Text>
     </View>
   );
 }

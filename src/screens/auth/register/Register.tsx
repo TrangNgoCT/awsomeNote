@@ -45,7 +45,6 @@ const Register: React.FC<Props> = ({ navigation }) => {
   });
 
   const handleRegisterClick = (data: RegisterPayload & { confirmPassword: string }) => {
-    console.log(data);
     dispatch(
       register({
         email: data.email,

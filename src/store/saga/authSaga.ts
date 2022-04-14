@@ -1,24 +1,14 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { call, fork, put, take } from 'redux-saga/effects';
-import { useFirebaseAuth } from '../../api/FirebaseAuth';
-import {
-  getAccessToken,
-  removeAccessToken,
-  storeData,
-  StoreKeys,
-} from '../../hooks/localStorage';
+import { firebaseAuth } from '../../api';
+import { getAccessToken, removeAccessToken } from '../../hooks/localStorage';
 import { LoginPayload, RegisterPayload } from '../../models';
 import { loginError, loginSuccess } from '../actionCreators';
-import {
-  LoggingAction,
-  OnLoginGooleAction,
-  OnRegisterAction,
-  AuthActionType,
-} from '../actions';
+import { AuthAction, AuthActionType } from '../actions';
 
 function* handleLogin(payload: LoginPayload) {
   try {
-    const result: FirebaseAuthTypes.UserCredential | null = yield useFirebaseAuth.login(
+    const result: FirebaseAuthTypes.UserCredential | null = yield firebaseAuth.login(
       payload
     );
     yield put(
@@ -35,8 +25,9 @@ function* handleLogin(payload: LoginPayload) {
 
 function* handleRegister(payload: RegisterPayload) {
   try {
-    const result: FirebaseAuthTypes.UserCredential | null =
-      yield useFirebaseAuth.register(payload);
+    const result: FirebaseAuthTypes.UserCredential | null = yield firebaseAuth.register(
+      payload
+    );
     yield put(
       loginSuccess({
         id: result?.user.uid ?? '',
@@ -51,8 +42,7 @@ function* handleRegister(payload: RegisterPayload) {
 
 function* handleLoginWithGoogle() {
   try {
-    const result: FirebaseAuthTypes.UserCredential =
-      yield useFirebaseAuth.signInByGoogle();
+    const result: FirebaseAuthTypes.UserCredential = yield firebaseAuth.signInByGoogle();
     yield put(
       loginSuccess({
         id: result.user.uid ?? '',
@@ -67,14 +57,14 @@ function* handleLoginWithGoogle() {
 
 function* handleLogout() {
   yield removeAccessToken();
-  yield useFirebaseAuth.logout();
+  yield firebaseAuth.logout();
 }
 
 function* watchLoginFlow() {
   while (true) {
     const isLoggedIn: string | undefined = yield getAccessToken();
     if (!isLoggedIn) {
-      const action: LoggingAction | OnRegisterAction | OnLoginGooleAction = yield take([
+      const action: AuthAction = yield take([
         AuthActionType.ON_LOGGING,
         AuthActionType.ON_REGISTER,
         AuthActionType.ON_LOGIN_GOOGLE,

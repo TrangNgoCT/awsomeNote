@@ -44,7 +44,6 @@ const Login: React.FC<Props> = ({ navigation }) => {
   const { error, loading } = useSelector((state: ApplicationState) => state.auth);
 
   const handleLoginClick = (data: LoginPayload) => {
-    console.log(data);
     dispatch(logging(data));
   };
 

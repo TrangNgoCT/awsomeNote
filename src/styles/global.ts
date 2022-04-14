@@ -21,14 +21,15 @@ const globalStyles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
-    borderWidth: 1,
+    marginBottom: 20,
+    borderWidth: 0.4,
     padding: 10,
     width: '100%',
     borderRadius: 5,
   },
   inputError: {
     borderColor: 'tomato',
+    transform: [{ translateY: 20 }],
   },
   btn: {
     borderRadius: 5,
@@ -46,6 +47,14 @@ const globalStyles = StyleSheet.create({
     backgroundColor: 'lightskyblue',
     color: 'snow',
   },
+  btnError: {
+    backgroundColor: 'tomato',
+    color: 'snow',
+  },
+  btnInfo: {
+    backgroundColor: 'limegreen',
+    color: 'snow',
+  },
   textLink: {
     color: 'skyblue',
     textDecorationLine: 'underline',
@@ -57,4 +66,28 @@ const globalStyles = StyleSheet.create({
   },
 });
 
-export { globalStyles };
+const groupCardStyles = StyleSheet.create({
+  card: {
+    width: '100%',
+    marginBottom: 12,
+    padding: 16,
+    backgroundColor: 'white',
+    borderRadius: 4,
+    borderColor: 'dimgrey',
+    borderWidth: 0.2,
+  },
+  title: {
+    fontWeight: '500',
+    fontSize: 16,
+    color: 'peru',
+    textTransform: 'uppercase',
+  },
+  desc: {},
+  time: {
+    fontSize: 12,
+    fontWeight: '300',
+    textAlign: 'right',
+  },
+});
+
+export { groupCardStyles, globalStyles };

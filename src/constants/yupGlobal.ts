@@ -26,6 +26,21 @@ const loginSchema = yup.object().shape({
     .password('Password must contain at least one letter and one number'),
 });
 
+const groupSchema = yup.object().shape({
+  title: yup
+    .string()
+    .trim()
+    .required('this field is required')
+    .min(5, 'Min 5 characters')
+    .max(30, 'Max 30 characters'),
+  desc: yup
+    .string()
+    .trim()
+    .required('This field is required')
+    .min(5, 'Min 6 characters')
+    .max(100, 'Max 100 characters'),
+});
+
 const forgotPasswordSchema = yup.object().shape({
   email: yup.string().email('email invalid').required('this field is required'),
 });
@@ -73,6 +88,7 @@ const updatePasswordSchema = yup.object().shape({
 
 export {
   yup,
+  groupSchema,
   registerSchema,
   loginSchema,
   forgotPasswordSchema,

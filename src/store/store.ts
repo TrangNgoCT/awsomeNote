@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { rootReducer } from './reducers';
+import { ApplicationState, rootReducer } from './reducers';
 import rootSaga from './saga/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -12,4 +13,5 @@ const store = createStore(
 );
 
 sagaMiddleware.run(rootSaga);
+export const lastGroupVisible = (state: ApplicationState) => state.group.lastGroupVisible;
 export { store };

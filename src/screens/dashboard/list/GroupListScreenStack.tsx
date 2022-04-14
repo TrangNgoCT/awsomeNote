@@ -8,12 +8,20 @@ const ListStack = createNativeStackNavigator<GroupListStackParams>();
 const GroupListScreenStack = () => {
   return (
     <ListStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-      initialRouteName="GroupList">
-      <ListStack.Screen name="GroupList" component={GroupList} />
-      <ListStack.Screen name="GroupDetail" component={Detail} />
+      initialRouteName="GroupList"
+      screenOptions={{ headerTitleAlign: 'center' }}>
+      <ListStack.Screen
+        name="GroupList"
+        component={GroupList}
+        options={{
+          title: 'All Groups',
+        }}
+      />
+      <ListStack.Screen
+        name="GroupDetail"
+        component={Detail}
+        options={{ headerShown: false }}
+      />
     </ListStack.Navigator>
   );
 };
