@@ -1,5 +1,5 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { GetGroupsReturn, Group, Note } from '../models';
+import { GetGroupsReturn, GetNotesReturn, Group, Note } from '../models';
 import { firebaseAuth } from './';
 
 const CollectionName = {
@@ -63,7 +63,7 @@ const fireStore = {
       lastGroupVisible: undefined,
     };
   },
-  async addGroupNote(group: Group) {
+  async addGroup(group: Group) {
     const uid = firebaseAuth.getUid();
     if (uid) {
       if (!group.createAt) {
@@ -93,7 +93,78 @@ const fireStore = {
       };
     }
   },
-  async addNoteToGroup(note: Note, groupId: string) {
+  async getTotalNotes(groupId: string) {
+    const uid = firebaseAuth.getUid();
+    if (uid) {
+      const result = await firestore()
+        .collection(uid)
+        .doc(groupId)
+        .collection(CollectionName.NOTES)
+        .get();
+      return result.docs.length;
+    }
+    return 0;
+  },
+  async getNotes(
+    groupId: string,
+    lastNoteVisible?: FirebaseFirestoreTypes.QueryDocumentSnapshot
+  ): Promise<GetNotesReturn> {
+    const uid = firebaseAuth.getUid();
+    if (uid) {
+      let result;
+      if (lastNoteVisible) {
+        result = await firestore()
+          .collection(uid)
+          .doc(groupId)
+          .collection(CollectionName.NOTES)
+          .orderBy(CollectionName.CREATE_AT, 'desc')
+          .startAfter(lastNoteVisible)
+          .limit(3)
+          .get();
+      } else {
+        result = await firestore()
+          .collection(uid)
+          .doc(groupId)
+          .collection(CollectionName.NOTES)
+          .orderBy(CollectionName.CREATE_AT, 'desc')
+          .limit(3)
+          .get();
+      }
+      const newLastNoteVisible = result.docs[result.docs.length - 1];
+      const notes = result.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Note[];
+      return {
+        lastNoteVisible: newLastNoteVisible,
+        notes,
+      };
+    }
+
+    return {
+      notes: [],
+      lastNoteVisible: undefined,
+    };
+  },
+  async updateNote(note: Note, groupId: string) {
+    const uid = firebaseAuth.getUid();
+    if (uid) {
+      const updateInfo: Note = {
+        title: note.title,
+        desc: note.desc,
+        image: note.image,
+        createAt: firestore.Timestamp.now(),
+      };
+      await firestore()
+        .collection(uid)
+        .doc(groupId)
+        .collection(CollectionName.NOTES)
+        .doc(note.id)
+        .update(updateInfo);
+      return {
+        ...updateInfo,
+        id: note.id,
+      };
+    }
+  },
+  async addNote(note: Note, groupId: string) {
     const uid = firebaseAuth.getUid();
     if (uid) {
       if (note.id) {
@@ -120,7 +191,7 @@ const fireStore = {
       }
     }
   },
-  async deleteNoteToGroup(noteId: string, groupId: string) {
+  async deleteNote(noteId: string, groupId: string) {
     const uid = firebaseAuth.getUid();
     if (uid) {
       await firestore()
@@ -131,7 +202,6 @@ const fireStore = {
         .delete();
     }
   },
-  // TODO delete note out of group (noteId, groupId)
 };
 
 export { fireStore };

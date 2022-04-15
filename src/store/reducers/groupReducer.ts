@@ -34,7 +34,6 @@ const GroupReducer = (
         };
       }
       // get next page
-
       return {
         ...state,
         loadingPartial: true,
@@ -80,7 +79,6 @@ const GroupReducer = (
       return {
         ...state,
         loadingAll: true,
-        selectedGroup: undefined,
       };
     case GroupActionType.UPDATE_GROUP_SUCCESS: {
       const newGroups: Group[] = state.groups.map((group) => {

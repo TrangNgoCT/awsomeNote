@@ -1,12 +1,13 @@
 import {
-  GetGroupSuccessPayload,
+  GetGroupsSuccessPayload,
   GroupIdPayload,
   GroupPayload,
+  OnGetGroupsPayload,
   SelectGroupPayload,
 } from '../../models';
 import { GroupAction, GroupActionType } from '../actions';
 
-export const onGetGroups = ({ isReload = false }): GroupAction => {
+export const onGetGroups = ({ isReload = false }: OnGetGroupsPayload): GroupAction => {
   return {
     type: GroupActionType.ON_GET_GROUPS,
     payload: {
@@ -20,7 +21,7 @@ export const getGroupsSuccess = ({
   lastGroupVisible,
   isReload = false,
   totalGroup,
-}: GetGroupSuccessPayload): GroupAction => {
+}: GetGroupsSuccessPayload): GroupAction => {
   return {
     type: GroupActionType.GET_GROUPS_SUCCESS,
     payload: {
@@ -46,23 +47,9 @@ export const onAddGroup = (payload: GroupPayload): GroupAction => {
   };
 };
 
-export const addGroupSuccess = (payload: GetGroupSuccessPayload): GroupAction => {
-  return {
-    type: GroupActionType.ADD_GROUP_SUCCESS,
-    payload,
-  };
-};
-
 export const onDeleteGroup = (payload: GroupIdPayload): GroupAction => {
   return {
     type: GroupActionType.ON_DELETE_GROUP,
-    payload,
-  };
-};
-
-export const deleteGroupSuccess = (payload: GetGroupSuccessPayload): GroupAction => {
-  return {
-    type: GroupActionType.DELETE_GROUP_SUCCESS,
     payload,
   };
 };

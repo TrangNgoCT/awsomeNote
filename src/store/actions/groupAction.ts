@@ -1,7 +1,5 @@
 import {
-  GetGroupsPayload,
-  GetGroupSuccessPayload,
-  Group,
+  GetGroupsSuccessPayload,
   GroupIdPayload,
   GroupPayload,
   OnGetGroupsPayload,
@@ -15,9 +13,7 @@ enum GroupActionType {
   ON_UPDATE_GROUP = 'ON_UPDATE_GROUP',
   UPDATE_GROUP_SUCCESS = 'UPDATE_GROUP_SUCCESS',
   ON_DELETE_GROUP = 'ON_DELETE_GROUP',
-  DELETE_GROUP_SUCCESS = 'DELETE_GROUP_SUCCESS',
   ON_ADD_GROUP = 'ON_ADD_GROUP',
-  ADD_GROUP_SUCCESS = 'ADD_GROUP_SUCCESS',
 }
 
 export { GroupActionType };
@@ -29,7 +25,7 @@ export interface OnGetGroups {
 
 export interface GetGroupsSuccess {
   readonly type: GroupActionType.GET_GROUPS_SUCCESS;
-  payload: GetGroupSuccessPayload;
+  payload: GetGroupsSuccessPayload;
 }
 
 export interface SelectGroup {
@@ -42,19 +38,9 @@ export interface OnAddGroup {
   payload: GroupPayload;
 }
 
-export interface AddGroupSuccess {
-  readonly type: GroupActionType.ADD_GROUP_SUCCESS;
-  payload: GetGroupsPayload;
-}
-
 export interface OnDeleteGroup {
   readonly type: GroupActionType.ON_DELETE_GROUP;
   payload: GroupIdPayload;
-}
-
-export interface DeleteGroupSuccess {
-  readonly type: GroupActionType.DELETE_GROUP_SUCCESS;
-  payload: GetGroupsPayload;
 }
 
 export interface OnUpdateGroup {
@@ -64,7 +50,7 @@ export interface OnUpdateGroup {
 
 export interface UpdateGroupSuccess {
   readonly type: GroupActionType.UPDATE_GROUP_SUCCESS;
-  payload: { group: Group };
+  payload: GroupPayload;
 }
 
 export type GroupAction =
@@ -72,8 +58,6 @@ export type GroupAction =
   | GetGroupsSuccess
   | SelectGroup
   | OnAddGroup
-  | AddGroupSuccess
   | OnDeleteGroup
-  | DeleteGroupSuccess
   | OnUpdateGroup
   | UpdateGroupSuccess;

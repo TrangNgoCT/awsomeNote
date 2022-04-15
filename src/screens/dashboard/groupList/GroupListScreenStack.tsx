@@ -1,7 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { Detail, GroupList } from '..';
+import { GroupDetail, GroupList, NoteDetail } from '..';
 import { GroupListStackParams } from '../../../constants/stackParams';
+import { AddNote } from '../addNote/AddNote';
 
 const ListStack = createNativeStackNavigator<GroupListStackParams>();
 
@@ -19,7 +20,17 @@ const GroupListScreenStack = () => {
       />
       <ListStack.Screen
         name="GroupDetail"
-        component={Detail}
+        component={GroupDetail}
+        options={{ headerShown: false }}
+      />
+      <ListStack.Screen
+        name="NoteDetail"
+        component={NoteDetail}
+        options={{ headerShown: false }}
+      />
+      <ListStack.Screen
+        name="AddNote"
+        component={AddNote}
         options={{ headerShown: false }}
       />
     </ListStack.Navigator>

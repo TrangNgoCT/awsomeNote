@@ -38,6 +38,7 @@ const GroupList: React.FC<Props> = () => {
   };
 
   const renderItem = ({ item }: { item: Group }) => <GroupCard group={item} />;
+
   return (
     <SafeAreaView style={globalStyles.container}>
       <TextInput
@@ -56,8 +57,7 @@ const GroupList: React.FC<Props> = () => {
           <FlatList
             data={groups}
             renderItem={renderItem}
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            keyExtractor={(group) => group.id!}
+            keyExtractor={(group) => group.id ?? '1'}
             onEndReached={handleLoadMoreGroups}
           />
           {loadingPartial && (

@@ -38,6 +38,4 @@ const GroupCard = ({ group }: groupCardProps) => {
   );
 };
 
-const styles = StyleSheet.create({});
-
 export { GroupCard };

@@ -3,6 +3,8 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 export type GroupListStackParams = {
   GroupList: undefined;
   GroupDetail: undefined;
+  NoteDetail: undefined;
+  AddNote: undefined;
 };
 
 export type HomeStackParams = GroupListStackParams & {

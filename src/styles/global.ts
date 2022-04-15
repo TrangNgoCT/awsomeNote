@@ -90,4 +90,43 @@ const groupCardStyles = StyleSheet.create({
   },
 });
 
-export { groupCardStyles, globalStyles };
+const noteCardStyles = StyleSheet.create({
+  card: {
+    width: '100%',
+    marginBottom: 12,
+    padding: 16,
+    backgroundColor: 'white',
+    borderRadius: 4,
+    borderColor: 'dimgrey',
+    borderWidth: 0.2,
+  },
+  title: {
+    fontWeight: '500',
+    fontSize: 14,
+    color: 'dimgray',
+    textTransform: 'uppercase',
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  leftWrapper: {
+    justifyContent: 'space-between',
+    marginRight: 12,
+    flex: 1,
+  },
+  desc: {},
+  time: {
+    fontSize: 12,
+    fontWeight: '300',
+    textAlign: 'right',
+  },
+  image: {
+    width: 120,
+    height: 100,
+    resizeMode: 'contain',
+    borderRadius: 10,
+  },
+});
+
+export { groupCardStyles, globalStyles, noteCardStyles };

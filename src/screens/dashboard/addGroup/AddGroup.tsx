@@ -1,7 +1,7 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { EditAddGroup } from '../../../components';
 import { HomeStackParams } from '../../../constants/stackParams';
 import { globalStyles } from '../../../styles/global';
